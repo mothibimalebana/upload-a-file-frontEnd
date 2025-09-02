@@ -78,7 +78,7 @@ const Navbar = () => {
           {/* nav links   */}
             <ul>
                 {navLinks.map(link => 
-                <div className="flex" key={link.link}>
+                <div className="grid grid-flow-col" key={link.link}>
                     {link.img}
                     <Link to={{pathname: `/${link.link}`}}>{link.link}</Link>
                 </div>
@@ -88,20 +88,20 @@ const Navbar = () => {
             {/* categories */}
             <ul>
                 {categories.map(link => 
-                <div className="flex" key={link.link}>
+                <div className="flex items-center md:w-1/2" key={link.link}>
                     {link.img}
                     <Link to={{pathname: `/${link.link}`}}>{link.link}</Link>
                 </div>
                 )}
 
                 {/* settings */}
-                <div className="flex" key={settings.link}>
+                <div className="flex items-center md:w-1/2" key={settings.link}>
                     {settings.img}
                     <Link to={{pathname: `/${settings.link}`}}>{settings.link}</Link>
                 </div>
 
                 {/* help and support */}
-                <div className="flex" key={helpAndSupport.link}>
+                <div className="flex items-center md:w-1/2" key={helpAndSupport.link}>
                     {helpAndSupport.img}
                     <Link to={{pathname: `/${helpAndSupport.link}`}}>{helpAndSupport.link}</Link>
                 </div> 
