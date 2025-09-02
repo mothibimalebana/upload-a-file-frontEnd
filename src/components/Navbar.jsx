@@ -74,8 +74,9 @@ const Navbar = () => {
 
     }
     return (
-        <nav className="navbar">
+        <nav className="navbar flex flex-col justify-between py-[1rem]">
           {/* nav links   */}
+        <div>
             <ul>
                 {navLinks.map(link => 
                 <div className="grid grid-flow-col gap-[12px] justify-items-start md:grid-cols-[20px_auto]" key={link.link}>
@@ -87,19 +88,22 @@ const Navbar = () => {
 
             {/* categories */}
             <ul>
+                <h2>Categories</h2>
                 {categories.map(link => 
                 <div className="grid grid-flow-col gap-[12px] justify-items-start md:grid-cols-[20px_auto]" key={link.link}>
                     {link.img}
                     <Link to={{pathname: `/${link.link}`}}>{link.link}</Link>
                 </div>
                 )}
+            </ul>
+        </div>
 
+            <ul>
                 {/* settings */}
                 <div className="grid grid-flow-col gap-[12px] justify-items-start md:grid-cols-[20px_auto]" key={settings.link}>
                     {settings.img}
                     <Link to={{pathname: `/${settings.link}`}}>{settings.link}</Link>
                 </div>
-
                 {/* help and support */}
                 <div className="grid grid-flow-col gap-[12px] justify-items-start md:grid-cols-[20px_auto]" key={helpAndSupport.link}>
                     {helpAndSupport.img}
