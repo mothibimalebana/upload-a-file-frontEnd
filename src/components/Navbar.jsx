@@ -78,8 +78,8 @@ const Navbar = () => {
           {/* nav links   */}
             <ul>
                 {navLinks.map(link => 
-                <div className="grid grid-flow-col" key={link.link}>
-                    {link.img}
+                <div className="grid grid-flow-col gap-[12px] justify-items-start md:grid-cols-[20px_auto]" key={link.link}>
+                   <div>{link.img}</div>
                     <Link to={{pathname: `/${link.link}`}}>{link.link}</Link>
                 </div>
                 )}
@@ -88,20 +88,20 @@ const Navbar = () => {
             {/* categories */}
             <ul>
                 {categories.map(link => 
-                <div className="flex items-center md:w-1/2" key={link.link}>
+                <div className="grid grid-flow-col gap-[12px] justify-items-start md:grid-cols-[20px_auto]" key={link.link}>
                     {link.img}
                     <Link to={{pathname: `/${link.link}`}}>{link.link}</Link>
                 </div>
                 )}
 
                 {/* settings */}
-                <div className="flex items-center md:w-1/2" key={settings.link}>
+                <div className="grid grid-flow-col gap-[12px] justify-items-start md:grid-cols-[20px_auto]" key={settings.link}>
                     {settings.img}
                     <Link to={{pathname: `/${settings.link}`}}>{settings.link}</Link>
                 </div>
 
                 {/* help and support */}
-                <div className="flex items-center md:w-1/2" key={helpAndSupport.link}>
+                <div className="grid grid-flow-col gap-[12px] justify-items-start md:grid-cols-[20px_auto]" key={helpAndSupport.link}>
                     {helpAndSupport.img}
                     <Link to={{pathname: `/${helpAndSupport.link}`}}>{helpAndSupport.link}</Link>
                 </div> 
