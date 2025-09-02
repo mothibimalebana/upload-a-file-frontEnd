@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-    <div className="app">
+    <div id='app' className="app grid md:grid-cols-[250px_minmax(900px,_auto)]">
       <Navbar/>
     </div>
     </>
