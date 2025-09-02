@@ -4,7 +4,7 @@ const Home = () => {
     console.log('Hello World!')
     return(
         <>
-        <Navbar/>
+        <p>Home Page</p>
         </>
     )
 }

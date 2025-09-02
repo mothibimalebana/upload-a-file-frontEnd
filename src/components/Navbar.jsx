@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const Navbar = () => {
     const navLinks = [
         {
@@ -41,7 +43,7 @@ const Navbar = () => {
         {
             img:
                 <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13.25 10.875V8.6875C13.25 7.94158 12.9537 7.22621 12.4262 6.69876C11.8988 6.17132 11.1834 5.875 10.4375 5.875H9.1875C8.93886 5.875 8.7004 5.77623 8.52459 5.60041C8.34877 5.4246 8.25 5.18614 8.25 4.9375V3.6875C8.25 2.94158 7.95368 2.22621 7.42624 1.69876C6.89879 1.17132 6.18342 0.875 5.4375 0.875H3.875M5.75 0.875H1.6875C1.17 0.875 0.75 1.295 0.75 1.8125V16.1875C0.75 16.705 1.17 17.125 1.6875 17.125H12.3125C12.83 17.125 13.25 16.705 13.25 16.1875V8.375C13.25 6.38588 12.4598 4.47822 11.0533 3.0717C9.64678 1.66518 7.73912 0.875 5.75 0.875Z" stroke="black" stroke-opacity="0.4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M13.25 10.875V8.6875C13.25 7.94158 12.9537 7.22621 12.4262 6.69876C11.8988 6.17132 11.1834 5.875 10.4375 5.875H9.1875C8.93886 5.875 8.7004 5.77623 8.52459 5.60041C8.34877 5.4246 8.25 5.18614 8.25 4.9375V3.6875C8.25 2.94158 7.95368 2.22621 7.42624 1.69876C6.89879 1.17132 6.18342 0.875 5.4375 0.875H3.875M5.75 0.875H1.6875C1.17 0.875 0.75 1.295 0.75 1.8125V16.1875C0.75 16.705 1.17 17.125 1.6875 17.125H12.3125C12.83 17.125 13.25 16.705 13.25 16.1875V8.375C13.25 6.38588 12.4598 4.47822 11.0533 3.0717C9.64678 1.66518 7.73912 0.875 5.75 0.875Z" stroke="black" strokeOpacity="0.4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
                 ,
             link: 'Documents'
@@ -72,13 +74,13 @@ const Navbar = () => {
 
     }
     return (
-        <div className="navbar">
+        <nav className="navbar">
           {/* nav links   */}
             <ul>
                 {navLinks.map(link => 
                 <div className="flex" key={link.link}>
                     {link.img}
-                    <p>{link.link}</p>
+                    <Link to={{pathname: `/${link.link}`}}>{link.link}</Link>
                 </div>
                 )}
             </ul>
@@ -88,23 +90,23 @@ const Navbar = () => {
                 {categories.map(link => 
                 <div className="flex" key={link.link}>
                     {link.img}
-                    <p>{link.link}</p>
+                    <Link to={{pathname: `/${link.link}`}}>{link.link}</Link>
                 </div>
                 )}
 
                 {/* settings */}
                 <div className="flex" key={settings.link}>
                     {settings.img}
-                    <p>{settings.link}</p>
+                    <Link to={{pathname: `/${settings.link}`}}>{settings.link}</Link>
                 </div>
 
                 {/* help and support */}
                 <div className="flex" key={helpAndSupport.link}>
                     {helpAndSupport.img}
-                    <p>{helpAndSupport.link}</p>
+                    <Link to={{pathname: `/${helpAndSupport.link}`}}>{helpAndSupport.link}</Link>
                 </div> 
             </ul>
-        </div>
+        </nav>
     )
 }
 
