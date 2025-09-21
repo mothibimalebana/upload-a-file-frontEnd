@@ -74,7 +74,7 @@ const Navbar = () => {
 
     }
     return (
-        <nav className="navbar flex flex-col justify-between py-[1rem]">
+        <nav className="navbar flex flex-col justify-between py-[1rem] px-[0.5rem]">
           {/* nav links   */}
         <div>
             <ul>
