@@ -67,13 +67,13 @@ const Form = () => {
   };
   return(
     <div className="form flex-1">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='flex flex-col justify-between items-center'>
         {/* Email Field */}
         <div className="form-group">
           <input 
           className={
             active === "email" 
-            ? 'md:w-[27.5rem] h-[4.3125rem] shrink-0 border-[#8AC0FF] border-[1px] border-solid'
+            ? 'border-[#8AC0FF] border-[1px] border-solid md:w-[27.5rem] h-[4.3125rem] shrink-0'
             : 'md:w-[27.5rem] h-[4.3125rem] shrink-0'
           }
             type="email"
@@ -117,9 +117,11 @@ const Form = () => {
 // LoginForm component
 function LoginForm() {
   return (
-    <div className="login-container h-full grid md:flex flex-col pt-[2%] pr-[25%] pb-[3%] pl-[25%]">
-      <Header/>
-      <Form/>
+    <div className="login-container h-full grid md:pt-[2%] pr-[25%] pb-[3%] pl-[25%]">
+      <div className="login flex gap-[40px] flex-col bg-[#fff] h-full">
+        <Header/>
+        <Form/>
+      </div>
     </div>
   );
 }
