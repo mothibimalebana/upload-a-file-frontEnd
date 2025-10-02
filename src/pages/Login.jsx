@@ -1,5 +1,13 @@
 import { useState } from 'react';
 
+const Header = () => {
+  return(
+    <div className="header">
+      <h1>Upload A File</h1>
+      <h3>Back up your digital life</h3>
+    </div>
+  )
+}
 // LoginForm component
 function LoginForm() {
   // State to handle form input values
@@ -32,7 +40,7 @@ function LoginForm() {
 
     try {
       // Make POST request to backend
-      const response = await fetch('http://localhost:3000/login', {
+      const response = await fetch('http://localhost:3000/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -62,7 +70,7 @@ function LoginForm() {
       <form onSubmit={handleSubmit}>
         {/* Email Field */}
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Email: </label>
           <input
             type="email"
             id="email"
@@ -76,7 +84,7 @@ function LoginForm() {
 
         {/* Password Field */}
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Password: </label>
           <input
             type="password"
             id="password"
