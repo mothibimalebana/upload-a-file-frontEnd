@@ -8,13 +8,15 @@ const Header = () => {
     </div>
   )
 }
-// LoginForm component
-function LoginForm() {
+
+
+const Form = () => {
   // State to handle form input values
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);  // Loading state
+  const [active, setActive] = useState(false)
 
   // Handle form submission
   const handleSubmit = async (event) => {
@@ -63,36 +65,39 @@ function LoginForm() {
       setLoading(false);
     }
   };
-
-  return (
-    <div className="login-container">
-      <h2>Login</h2>
+  return(
+    <div className="form flex-1">
       <form onSubmit={handleSubmit}>
         {/* Email Field */}
         <div className="form-group">
-          <label htmlFor="email">Email: </label>
-          <input
+          <input 
+          className={
+            active === "email" 
+            ? 'md:w-[27.5rem] h-[4.3125rem] shrink-0 border-[#8AC0FF] border-[1px] border-solid'
+            : 'md:w-[27.5rem] h-[4.3125rem] shrink-0'
+          }
             type="email"
             id="email"
+            onFocus={() => setActive("email")}
+            onBlur={() => setActive("")}
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            placeholder="Enter your email"
+            placeholder="email@gmail.com"
           />
         </div>
 
         {/* Password Field */}
         <div className="form-group">
-          <label htmlFor="password">Password: </label>
-          <input
+          <input className='md: w-[27.5rem] h-[4.3125rem] shrink-0'
             type="password"
             id="password"
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            placeholder="Enter your password"
+            placeholder="Password"
           />
         </div>
 
@@ -100,10 +105,21 @@ function LoginForm() {
         {error && <p className="error-message">{error}</p>}
 
         {/* Submit Button */}
-        <button type="submit" className="login-button" disabled={loading}>
+        <button type="submit" className="login-button md: w-[19.5rem] h-[3.875rem] shrink-0 bg-[#0366FF] rounded-[0.5rem] text-white" disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
+    </div>
+  )
+}
+
+
+// LoginForm component
+function LoginForm() {
+  return (
+    <div className="login-container h-full grid md:flex flex-col pt-[2%] pr-[25%] pb-[3%] pl-[25%]">
+      <Header/>
+      <Form/>
     </div>
   );
 }
