@@ -67,7 +67,7 @@ const Form = () => {
   };
   return(
     <div className="form flex-1">
-      <form onSubmit={handleSubmit} className='flex flex-col justify-between items-center'>
+      <form onSubmit={handleSubmit} className='flex flex-col justify-evenly items-center h-full'>
         {/* Email Field */}
         <div className="form-group">
           <input 
@@ -118,7 +118,7 @@ const Form = () => {
 function LoginForm() {
   return (
     <div className="login-container h-full grid md:pt-[2%] pr-[25%] pb-[3%] pl-[25%]">
-      <div className="login flex gap-[40px] flex-col bg-[#fff] h-full">
+      <div className="login flex gap-[5%] flex-col bg-[#fff] h-full">
         <Header/>
         <Form/>
       </div>
