@@ -1,80 +1,141 @@
-import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
 
-const OAuth = () => {
-    return(
-        <div className="OAuth">
-            <div className="google"></div>
-            <div className="meta"></div>
-            <div className="apple"></div>
-        </div>
-    )
+const Header = () => {
+  return(
+    <div className="header">
+      <h1>Upload A File</h1>
+      <h3>Back up your digital life</h3>
+    </div>
+  )
 }
+
 
 const Form = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassowrd, setConfirmPassword] = useState('');
-    const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false);
- 
-    const userCreated = async (response) => {
-        if(response.status === 201 || response.status === '201'){
-            setEmail('');
-            setPassword('');
-            setConfirmPassword('');
-            alert('User created');
-            useNavigate('/login');
-        }
-    }
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+  // State to handle form input values
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);  // Loading state
 
-        if(password != confirmPassowrd){
-            setError('passwords do not match')
-        }
-        if(!email || !password || !confirmPassowrd){
-            setError('Please fill in all the fields')
-        }
-        
-        setError('');
-        setLoading(true);
+  // Handle form submission
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-        try{
-        const response = await axios.post("http://localhost:3000/user", JSON.stringify({email, password, }), {headers: { "Content-Type": "application/json" }, withCredentials: true})
-        .then(userCreated)
-        }
-        catch(err){
-            setError(err.message);
-        }
-        finally{
-            setLoading(false)
-        }
+    // Basic validation
+    if (!email || !password) {
+      setError('Please fill in both fields');
+      return;
     }
 
-    return(
-        <div className="form">
-            <form action="https://localhost:3000/sign-up" onSubmit={handleSubmit} method="post">
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} name="email" id="email" placeholder="email" required/>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} name="password" id="password" placeholder="password" required/>
-                <input type="password" value={confirmPassowrd} onChange={(e) => setConfirmPassword(e.target.value)} name="confirmPassword" id="confirmPassword" placeholder="confirm password" required/>
-                <OAuth />
-                <button type="submit" onSubmit={handleSubmit} disabled={loading}>Sign Up</button>
-            </form>
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+
+    if(password)
+    // Clear any previous errors
+    setError('');
+    setLoading(true);
+
+    // Prepare the payload for the POST request
+    const payload = { email, password };
+
+    try {
+      // Make POST request to backend
+      const response = await fetch('http://localhost:3000/auth/sign-up', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      // Check if the request was successful
+      if (!response.ok) {
+        throw new Error('sign-up failed. Please try again.');
+      }
+
+      const data = await response.json();
+      console.log('sign-up successful:', data);
+      setEmail('');
+      setPassword('');
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  return(
+    <div className="form flex-1">
+      <form onSubmit={handleSubmit} className='flex flex-col justify-evenly items-center h-full'>
+        {/* Email Field */}
+        <div className="form-group">
+          <input 
+            className="rounded-[0.625rem] border-1 border-[#E6E6E6] focus-visible:outline-[#8AC0FF] md:w-[27.5rem] h-[4.3125rem] shrink-0"
+            type="email"
+            onFocus={() => setActive("email")}
+            onBlur={() => setActive("")}
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            placeholder="email@gmail.com"
+            autoFocus
+          />
         </div>
-    )
+
+        {/* Password Field */}
+        <div className="form-group">
+          <input 
+            className='rounded-[0.625rem] border-1 border-[#E6E6E6] focus-visible:outline-blue-300 md:w-[27.5rem] h-[4.3125rem] shrink-0'
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            placeholder="Password"
+          />
+        </div>
+
+        {/* Confirm Password Field */}
+        <div className="form-group">
+          <input 
+            className='rounded-[0.625rem] border-1 border-[#E6E6E6] focus-visible:outline-blue-300 md:w-[27.5rem] h-[4.3125rem] shrink-0'
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            placeholder="Confirm Password"
+          />
+        </div>
+
+        {/* Error Message */}
+        {error && <p className="error-message">{error}</p>}
+
+        {/* Submit Button */}
+        <button type="submit" className="sign-up-button md: w-[19.5rem] h-[3.875rem] shrink-0 bg-[#0366FF] rounded-[0.5rem] text-white" disabled={loading}>
+          {loading ? 'Creating account...' : 'sign-up'}
+        </button>
+      </form>
+    </div>
+  )
 }
 
-const SignUpForm = () => {
 
-    return(
-        <div className="sign-up">
-            <div className="header"><h1>Back up your digital life</h1></div>
-            <p>Choose one of the options to login</p>
-            <Form />
-        </div>
-    )
+// SignUpForm component
+function SignUpForm() {
+  return (
+    <div className="sign-up-container bg-[#EEF2F5] h-full flex justify-center">
+      <div className="sign-up flex gap-[3.625rem] flex-col bg-[#fff] h-full md:min-w-[32.6875rem] min-h-[37.5625rem]">
+        <Header/>
+        <Form/>
+      </div>
+    </div>
+  );
 }
 
 export default SignUpForm;

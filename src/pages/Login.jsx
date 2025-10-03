@@ -71,13 +71,8 @@ const Form = () => {
         {/* Email Field */}
         <div className="form-group">
           <input 
-          className={
-            active === "email" 
-            ? 'border-[#8AC0FF] border-[1px] border-solid md:w-[27.5rem] h-[4.3125rem] shrink-0'
-            : 'md:w-[27.5rem] h-[4.3125rem] shrink-0'
-          }
+            className="rounded-[0.625rem] border-1 border-[#E6E6E6] focus-visible:outline-[#8AC0FF] md:w-[27.5rem] h-[4.3125rem] shrink-0"
             type="email"
-            id="email"
             onFocus={() => setActive("email")}
             onBlur={() => setActive("")}
             name="email"
@@ -85,12 +80,14 @@ const Form = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
             placeholder="email@gmail.com"
+            autoFocus
           />
         </div>
 
         {/* Password Field */}
         <div className="form-group">
-          <input className='md: w-[27.5rem] h-[4.3125rem] shrink-0'
+          <input 
+            className='rounded-[0.625rem] border-1 border-[#E6E6E6] focus-visible:outline-blue-300 md:w-[27.5rem] h-[4.3125rem] shrink-0'
             type="password"
             id="password"
             name="password"
@@ -117,8 +114,8 @@ const Form = () => {
 // LoginForm component
 function LoginForm() {
   return (
-    <div className="login-container h-full grid md:pt-[2%] pr-[25%] pb-[3%] pl-[25%]">
-      <div className="login flex gap-[5%] flex-col bg-[#fff] h-full">
+    <div className="login-container bg-[#EEF2F5] h-full flex justify-center">
+      <div className="login flex gap-[3.625rem] flex-col bg-[#fff] h-full md:min-w-[32.6875rem] min-h-[37.5625rem]">
         <Header/>
         <Form/>
       </div>
