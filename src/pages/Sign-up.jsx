@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { data } from 'react-router-dom';
 
 const Header = () => {
   return(
@@ -15,7 +16,7 @@ const Form = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [error, setError] = useState('');
+  const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);  // Loading state
 
   // Handle form submission
@@ -24,18 +25,21 @@ const Form = () => {
 
     // Basic validation
     if (!email || !password) {
-      setError('Please fill in both fields');
+      setResponse('Please fill in both fields');
       return;
     }
 
     if (!/\S+@\S+\.\S+/.test(email)) {
-      setError('Please enter a valid email address');
+      setResponse('Please enter a valid email address');
       return;
     }
 
-    if(password)
+    if(password !== confirmPassword){
+        setResponse('Passwords do not match')
+        return;
+    }
     // Clear any previous errors
-    setError('');
+    setResponse('');
     setLoading(true);
 
     // Prepare the payload for the POST request
@@ -51,17 +55,22 @@ const Form = () => {
         body: JSON.stringify(payload),
       });
 
-      // Check if the request was successful
-      if (!response.ok) {
-        throw new Error('sign-up failed. Please try again.');
+      const responseData = await response.json();
+      
+      if(responseData.message === 'email is already registered, please try again w/ new email'){
+        setResponse('email is already registered, please try again w/ new email')
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+        return;
       }
 
-      const data = await response.json();
-      console.log('sign-up successful:', data);
+      console.log('sign-up status:', responseData.message);
       setEmail('');
       setPassword('');
+      setConfirmPassword('');
     } catch (err) {
-      setError(err.message);
+        setResponse(err.message);
     } finally {
       setLoading(false);
     }
@@ -74,8 +83,6 @@ const Form = () => {
           <input 
             className="rounded-[0.625rem] border-1 border-[#E6E6E6] focus-visible:outline-[#8AC0FF] md:w-[27.5rem] h-[4.3125rem] shrink-0"
             type="email"
-            onFocus={() => setActive("email")}
-            onBlur={() => setActive("")}
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -104,17 +111,17 @@ const Form = () => {
           <input 
             className='rounded-[0.625rem] border-1 border-[#E6E6E6] focus-visible:outline-blue-300 md:w-[27.5rem] h-[4.3125rem] shrink-0'
             type="password"
-            id="password"
+            id="confirmPassword"
             name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             required
             placeholder="Confirm Password"
           />
         </div>
 
-        {/* Error Message */}
-        {error && <p className="error-message">{error}</p>}
+        {/* response Message */}
+        {response && <p className="response-message">{response}</p>}
 
         {/* Submit Button */}
         <button type="submit" className="sign-up-button md: w-[19.5rem] h-[3.875rem] shrink-0 bg-[#0366FF] rounded-[0.5rem] text-white" disabled={loading}>

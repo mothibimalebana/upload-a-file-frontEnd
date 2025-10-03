@@ -16,7 +16,6 @@ const Form = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);  // Loading state
-  const [active, setActive] = useState(false)
 
   // Handle form submission
   const handleSubmit = async (event) => {
@@ -73,8 +72,6 @@ const Form = () => {
           <input 
             className="rounded-[0.625rem] border-1 border-[#E6E6E6] focus-visible:outline-[#8AC0FF] md:w-[27.5rem] h-[4.3125rem] shrink-0"
             type="email"
-            onFocus={() => setActive("email")}
-            onBlur={() => setActive("")}
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
