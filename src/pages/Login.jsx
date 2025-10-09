@@ -70,7 +70,7 @@ const Form = () => {
         {/* Email Field */}
         <div className="form-group">
           <input 
-            className="rounded min-w-[14.375rem] min-h-[3.75rem]"
+            className="rounded min-h-[3.75rem] border-[#E6E6E6] border-[1px] w-full focus:outline-1 outline-[#8AC0FF]"
             type="email"
             name="email"
             value={email}
@@ -84,7 +84,7 @@ const Form = () => {
         {/* Password Field */}
         <div className="form-group">
           <input 
-            className="rounded min-w-[14.375rem] min-h-[3.75rem]"
+            className="rounded min-w-[14.375rem] min-h-[3.75rem] border-[#E6E6E6] border-[1px] w-full focus-visible:outline-1 outline-[#8AC0FF]"
             type="password"
             id="password"
             name="password"
@@ -99,7 +99,7 @@ const Form = () => {
         {error && <p className="error-message">{error}</p>}
 
         {/* Submit Button */}
-        <button type="submit" className="login min-w-[14.375rem] min-h-[3.75rem]" disabled={loading}>
+        <button type="submit" className="login min-w-[14.375rem] min-h-[3.75rem] text-[#FFFFFF] bg-[#0366FF]" disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
@@ -111,7 +111,7 @@ const Form = () => {
 // LoginForm component
 function LoginForm() {
   return (
-    <div className="login-container h-full bg-[#FFFFFF] pt-[30%] pb-[40%]">
+    <div className="login-container h-full bg-[#FFFFFF] pt-[30%] pb-[40%] overscroll-none">
       <div className="login flex flex-col h-full justify-between">
         <Header/>
         <Form/>
