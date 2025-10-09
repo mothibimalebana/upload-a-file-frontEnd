@@ -3,8 +3,8 @@ import { useState } from 'react';
 const Header = () => {
   return(
     <div className="header">
-      <h1>Upload A File</h1>
-      <h3>Back up your digital life</h3>
+      <h1 className='text-[1.75rem] font-[700] text-[#292929]'>Back up your digital life</h1>
+      <p></p>
     </div>
   )
 }
@@ -65,12 +65,12 @@ const Form = () => {
     }
   };
   return(
-    <div className="form flex-1">
-      <form onSubmit={handleSubmit} className='flex flex-col justify-evenly items-center h-full'>
+    <div className="form flex flex-col justify-end grow-1 shrink-0 content-end items-center">
+      <form onSubmit={handleSubmit} className='flex flex-col h-[80%] justify-between'>
         {/* Email Field */}
         <div className="form-group">
           <input 
-            className="rounded-[0.625rem] border-1 border-[#E6E6E6] focus-visible:outline-[#8AC0FF] md:w-[27.5rem] h-[4.3125rem] shrink-0"
+            className="rounded min-w-[14.375rem] min-h-[3.75rem]"
             type="email"
             name="email"
             value={email}
@@ -84,7 +84,7 @@ const Form = () => {
         {/* Password Field */}
         <div className="form-group">
           <input 
-            className='rounded-[0.625rem] border-1 border-[#E6E6E6] focus-visible:outline-blue-300 md:w-[27.5rem] h-[4.3125rem] shrink-0'
+            className="rounded min-w-[14.375rem] min-h-[3.75rem]"
             type="password"
             id="password"
             name="password"
@@ -99,7 +99,7 @@ const Form = () => {
         {error && <p className="error-message">{error}</p>}
 
         {/* Submit Button */}
-        <button type="submit" className="login-button md: w-[19.5rem] h-[3.875rem] shrink-0 bg-[#0366FF] rounded-[0.5rem] text-white" disabled={loading}>
+        <button type="submit" className="login min-w-[14.375rem] min-h-[3.75rem]" disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
@@ -111,8 +111,8 @@ const Form = () => {
 // LoginForm component
 function LoginForm() {
   return (
-    <div className="login-container bg-[#EEF2F5] h-full flex justify-center">
-      <div className="login flex gap-[3.625rem] flex-col bg-[#fff] h-full md:min-w-[32.6875rem] min-h-[37.5625rem]">
+    <div className="login-container h-full bg-[#FFFFFF] pt-[30%] pb-[40%]">
+      <div className="login flex flex-col h-full justify-between">
         <Header/>
         <Form/>
       </div>

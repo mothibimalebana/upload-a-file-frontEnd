@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { data } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   return(
@@ -18,6 +18,7 @@ const Form = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);  // Loading state
+  const navigate = useNavigate();
 
   // Handle form submission
   const handleSubmit = async (event) => {
@@ -55,8 +56,7 @@ const Form = () => {
         body: JSON.stringify(payload),
       });
 
-      const responseData = await response.json();
-      
+            
       if(responseData.message === 'email is already registered, please try again w/ new email'){
         setResponse('email is already registered, please try again w/ new email')
         setEmail('');
@@ -65,10 +65,11 @@ const Form = () => {
         return;
       }
 
-      console.log('sign-up status:', responseData.message);
       setEmail('');
       setPassword('');
       setConfirmPassword('');
+      navigate("/login")
+      
     } catch (err) {
         setResponse(err.message);
     } finally {
