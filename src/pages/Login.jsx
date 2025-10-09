@@ -99,7 +99,7 @@ const Form = () => {
         {error && <p className="error-message">{error}</p>}
 
         {/* Submit Button */}
-        <button type="submit" className="login min-w-[14.375rem] min-h-[3.75rem] text-[#FFFFFF] bg-[#0366FF]" disabled={loading}>
+        <button type="submit" className="login rounded min-w-[14.375rem] min-h-[3.75rem] text-[#FFFFFF] bg-[#0366FF]" disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
