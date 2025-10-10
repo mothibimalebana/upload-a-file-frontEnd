@@ -2,29 +2,25 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
-  return(
+  return (
     <div className="header">
-      <h1>Upload A File</h1>
-      <h3>Back up your digital life</h3>
+      <h1 className="text-[1.75rem] font-[700] text-[#292929]">Back up your digital life</h1>
+      <p></p>
     </div>
-  )
-}
-
+  );
+};
 
 const Form = () => {
-  // State to handle form input values
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [response, setResponse] = useState('');
-  const [loading, setLoading] = useState(false);  // Loading state
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Basic validation
     if (!email || !password) {
       setResponse('Please fill in both fields');
       return;
@@ -35,19 +31,17 @@ const Form = () => {
       return;
     }
 
-    if(password !== confirmPassword){
-        setResponse('Passwords do not match')
-        return;
+    if (password !== confirmPassword) {
+      setResponse('Passwords do not match');
+      return;
     }
-    // Clear any previous errors
+
     setResponse('');
     setLoading(true);
 
-    // Prepare the payload for the POST request
     const payload = { email, password };
 
     try {
-      // Make POST request to backend
       const response = await fetch('http://localhost:3000/auth/sign-up', {
         method: 'POST',
         headers: {
@@ -56,9 +50,10 @@ const Form = () => {
         body: JSON.stringify(payload),
       });
 
-            
-      if(responseData.message === 'email is already registered, please try again w/ new email'){
-        setResponse('email is already registered, please try again w/ new email')
+      const responseData = await response.json();
+
+      if (responseData.message === 'email is already registered, please try again w/ new email') {
+        setResponse('email is already registered, please try again w/ new email');
         setEmail('');
         setPassword('');
         setConfirmPassword('');
@@ -68,21 +63,21 @@ const Form = () => {
       setEmail('');
       setPassword('');
       setConfirmPassword('');
-      navigate("/login")
-      
+      navigate("/login");
     } catch (err) {
-        setResponse(err.message);
+      setResponse(err.message);
     } finally {
       setLoading(false);
     }
   };
-  return(
-    <div className="form flex-1">
-      <form onSubmit={handleSubmit} className='flex flex-col justify-evenly items-center h-full'>
+
+  return (
+    <div className="form flex flex-col justify-end grow-1 shrink-0 content-end items-center">
+      <form onSubmit={handleSubmit} className="flex flex-col h-[80%] justify-between">
         {/* Email Field */}
         <div className="form-group">
-          <input 
-            className="rounded-[0.625rem] border-1 border-[#E6E6E6] focus-visible:outline-[#8AC0FF] md:w-[27.5rem] h-[4.3125rem] shrink-0"
+          <input
+            className="rounded min-h-[3.75rem] border-[#E6E6E6] border w-full focus:outline focus:outline-1 focus:outline-[#8AC0FF]"
             type="email"
             name="email"
             value={email}
@@ -95,8 +90,8 @@ const Form = () => {
 
         {/* Password Field */}
         <div className="form-group">
-          <input 
-            className='rounded-[0.625rem] border-1 border-[#E6E6E6] focus-visible:outline-blue-300 md:w-[27.5rem] h-[4.3125rem] shrink-0'
+          <input
+            className="rounded min-h-[3.75rem] border-[#E6E6E6] border w-full focus:outline focus:outline-1 focus:outline-[#8AC0FF]"
             type="password"
             id="password"
             name="password"
@@ -109,11 +104,11 @@ const Form = () => {
 
         {/* Confirm Password Field */}
         <div className="form-group">
-          <input 
-            className='rounded-[0.625rem] border-1 border-[#E6E6E6] focus-visible:outline-blue-300 md:w-[27.5rem] h-[4.3125rem] shrink-0'
+          <input
+            className="rounded min-h-[3.75rem] border-[#E6E6E6] border w-full focus:outline focus:outline-1 focus:outline-[#8AC0FF]"
             type="password"
             id="confirmPassword"
-            name="password"
+            name="confirmPassword"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
@@ -121,26 +116,28 @@ const Form = () => {
           />
         </div>
 
-        {/* response Message */}
-        {response && <p className="response-message">{response}</p>}
+        {/* Response Message */}
+        {response && <p className="error-message">{response}</p>}
 
         {/* Submit Button */}
-        <button type="submit" className="sign-up-button md: w-[19.5rem] h-[3.875rem] shrink-0 bg-[#0366FF] rounded-[0.5rem] text-white" disabled={loading}>
-          {loading ? 'Creating account...' : 'sign-up'}
+        <button
+          type="submit"
+          className="login rounded min-w-[14.375rem] min-h-[3.75rem] text-[#FFFFFF] bg-[#0366FF]"
+          disabled={loading}
+        >
+          {loading ? 'Creating account...' : 'Sign Up'}
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-
-// SignUpForm component
 function SignUpForm() {
   return (
-    <div className="sign-up-container bg-[#EEF2F5] h-full flex justify-center">
-      <div className="sign-up flex gap-[3.625rem] flex-col bg-[#fff] h-full md:min-w-[32.6875rem] min-h-[37.5625rem]">
-        <Header/>
-        <Form/>
+    <div className="login-container h-full bg-[#FFFFFF] pt-[30%] pb-[40%] overscroll-none">
+      <div className="login flex flex-col h-full justify-between">
+        <Header />
+        <Form />
       </div>
     </div>
   );
