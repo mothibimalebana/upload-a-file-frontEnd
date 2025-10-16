@@ -77,7 +77,7 @@ const Form = () => {
         {/* Email Field */}
         <div className="form-group">
           <input
-            className="rounded min-h-[3.75rem] border-[#E6E6E6] border w-full focus:outline focus:outline-1 focus:outline-[#8AC0FF]"
+            className="rounded min-h-[3.75rem] border-[#E6E6E6] border w-full focus-visible:outline-1 focus:outline-[#8AC0FF]"
             type="email"
             name="email"
             value={email}
@@ -91,7 +91,7 @@ const Form = () => {
         {/* Password Field */}
         <div className="form-group">
           <input
-            className="rounded min-h-[3.75rem] border-[#E6E6E6] border w-full focus:outline focus:outline-1 focus:outline-[#8AC0FF]"
+            className="rounded min-h-[3.75rem] border-[#E6E6E6] border w-full focus-visible:outline-1 focus:outline-[#8AC0FF]"
             type="password"
             id="password"
             name="password"
@@ -105,7 +105,7 @@ const Form = () => {
         {/* Confirm Password Field */}
         <div className="form-group">
           <input
-            className="rounded min-h-[3.75rem] border-[#E6E6E6] border w-full focus:outline focus:outline-1 focus:outline-[#8AC0FF]"
+            className="rounded min-h-[3.75rem] border-[#E6E6E6] border w-full focus-visible:outline-1 focus:outline-[#8AC0FF]"
             type="password"
             id="confirmPassword"
             name="confirmPassword"
@@ -134,7 +134,7 @@ const Form = () => {
 
 function SignUpForm() {
   return (
-    <div className="login-container h-full bg-[#FFFFFF] pt-[30%] pb-[40%] overscroll-none">
+    <div className="login-container h-full bg-[#FFFFFF] pt-[30%] pb-[5rem] overscroll-none md:pt-[2rem]">
       <div className="login flex flex-col h-full justify-between">
         <Header />
         <Form />
