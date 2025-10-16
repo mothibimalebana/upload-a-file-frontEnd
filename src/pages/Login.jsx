@@ -111,7 +111,7 @@ const Form = () => {
 // LoginForm component
 function LoginForm() {
   return (
-    <div className="login-container h-full bg-[#FFFFFF] pt-[30%] pb-[40%] overscroll-none">
+    <div className="login-container h-full bg-[#FFFFFF] pt-[30%] pb-[5rem] overscroll-none md:pt-[2rem]">
       <div className="login flex flex-col h-full justify-between">
         <Header/>
         <Form/>
