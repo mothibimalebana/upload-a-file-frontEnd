@@ -18,6 +18,14 @@ const Form = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const handleAlert = async () => {
+    alert(response);
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
+    setResponse('')
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -117,7 +125,7 @@ const Form = () => {
         </div>
 
         {/* Response Message */}
-        {response && <p className="error-message">{response}</p>}
+        {response && handleAlert()}
 
         {/* Submit Button */}
         <button
@@ -132,7 +140,7 @@ const Form = () => {
   );
 };
 
-function SignUpForm() {
+function SignUp() {
   return (
     <div className="login-container h-full bg-[#FFFFFF] pt-[30%] pb-[5rem] overscroll-none md:pt-[2rem]">
       <div className="login flex flex-col h-full justify-between">
@@ -143,4 +151,4 @@ function SignUpForm() {
   );
 }
 
-export default SignUpForm;
+export default SignUp;

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   return(
@@ -14,8 +15,26 @@ const Form = () => {
   // State to handle form input values
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);  // Loading state
+  const navigate = useNavigate();
+
+  const login = () => {
+    navigate("/")
+  }
+  const handleResponse = () => {
+    alert(response);
+    setEmail('');
+    setPassword('');
+    setResponse('');
+    setLoading('');
+    setResponse('');
+
+    if(loggedIn){
+      login()
+    }
+  }
 
   // Handle form submission
   const handleSubmit = async (event) => {
@@ -23,17 +42,17 @@ const Form = () => {
 
     // Basic validation
     if (!email || !password) {
-      setError('Please fill in both fields');
+      setResponse('Please fill in both fields');
       return;
     }
 
     if (!/\S+@\S+\.\S+/.test(email)) {
-      setError('Please enter a valid email address');
+      setResponse('Please enter a valid email address');
       return;
     }
 
     // Clear any previous errors
-    setError('');
+    setResponse('');
     setLoading(true);
 
     // Prepare the payload for the POST request
@@ -54,12 +73,12 @@ const Form = () => {
         throw new Error('Login failed. Please try again.');
       }
 
-      const data = await response.json();
-      console.log('Login successful:', data);
+      setResponse('Login Successful')
+      setLoggedIn(true)
       setEmail('');
       setPassword('');
     } catch (err) {
-      setError(err.message);
+      setResponse(err.message);
     } finally {
       setLoading(false);
     }
@@ -96,7 +115,7 @@ const Form = () => {
         </div>
 
         {/* Error Message */}
-        {error && <p className="error-message">{error}</p>}
+        {response && handleResponse()}
 
         {/* Submit Button */}
         <button type="submit" className="login rounded min-w-[14.375rem] min-h-[3.75rem] text-[#FFFFFF] bg-[#0366FF]" disabled={loading}>
