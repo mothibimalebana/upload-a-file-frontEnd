@@ -56,7 +56,7 @@ const Navbar = () => {
         <div>
             <ul className="flex flex-col gap-[8px]">
                 {navLinks.map(link => 
-                <div className="grid grid-flow-col w-[240px] h-[45px] gap-[12px] justify-items-start md:grid-cols-[20px_auto]" key={link.label}>
+                <div className="grid grid-flow-col w-full h-[45px] gap-[12px] justify-items-start md:grid-cols-[20px_auto]" key={link.label}>
                    <div className="flex items-center">{link.img}</div>
                     <Link className="flex items-center" to={{pathname: `/${link.label}`}}>{link.label}</Link>
                 </div>
@@ -67,12 +67,12 @@ const Navbar = () => {
 
             <ul className="flex flex-col gap-[8px]">
                 {/* settings */}
-                <div className="grid grid-flow-col w-[240px] h-[45px] gap-[12px] justify-items-start md:grid-cols-[20px_auto]" key={settings.link}>
+                <div className="grid grid-flow-col w-full h-[45px] gap-[12px] justify-items-start md:grid-cols-[20px_auto]" key={settings.link}>
                     <div className="flex items-center">{settings.img}</div>
                     <Link className="flex items-center" to={{pathname: `/${settings.label}`}}>{settings.label}</Link>
                 </div>
                 {/* help and support */}
-                <div className="grid grid-flow-col gap-[12px] w-[240px] h-[45px] justify-items-start md:grid-cols-[20px_auto]" key={helpAndSupport.link}>
+                <div className="grid grid-flow-col gap-[12px] w-full h-[45px] justify-items-start md:grid-cols-[20px_auto]" key={helpAndSupport.link}>
                     <div className="flex items-center">{helpAndSupport.img}</div>
                     <Link className="flex items-center" to={{pathname: `/${helpAndSupport.label}`}}>{helpAndSupport.label}</Link>
                 </div> 
