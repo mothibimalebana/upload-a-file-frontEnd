@@ -51,7 +51,7 @@ const Navbar = () => {
 
     }
     return (
-        <nav className="navbar flex flex-col justify-between py-[1rem] px-[0.5rem]">
+        <nav className="navbar flex flex-col justify-between py-[1rem] px-[0.5rem] bg-[#F6F6F6]">
           {/* nav links   */}
         <div>
             <ul className="flex flex-col gap-[8px]">
