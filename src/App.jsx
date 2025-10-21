@@ -5,12 +5,13 @@ import { useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Header from './components/Header';
+import SearchBar from './components/SearchBar';
 
 function App() {
   const [selectedPage, useSelectedPage] = useState(window.location.pathname.slice(1));
 
   useGSAP(() => {
-    gsap.from(".app-content",{duration: 1, y: '100%', ease: 'power4.out'})
+    gsap.from(".outlet",{duration: 1, y: '100%', ease: 'power4.out'})
   }, {dependencies:[selectedPage]})
 
 
@@ -20,7 +21,10 @@ function App() {
       <Navbar page={useSelectedPage} currPage={selectedPage}/>
       <div className="app-content w-full">
         <Header page={selectedPage}/>
-        <Outlet id='outlet'/>
+        <SearchBar/>
+        <div className="outlet">
+          <Outlet/>
+        </div>
       </div>
     </div>
     </>
