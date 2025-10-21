@@ -1,8 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-const Navbar = ({page}) => {
-    const [selected, useSelectd] = useState('Home');
+const Navbar = ({page, currPage}) => {
 
     const topNavLinks = [
         /** home **/
@@ -62,7 +61,7 @@ const Navbar = ({page}) => {
     ]
 
     const handleClick = (selectedLink) => {
-        useSelectd(selectedLink);
+        page(selectedLink);
     }
 
     return (
@@ -71,8 +70,8 @@ const Navbar = ({page}) => {
             <div>
                 <ul className="flex flex-col gap-[8px]">
                     {topNavLinks.map(link => 
-                    <div className={selected === link.label ? `grid grid-flow-col w-full h-[45px] gap-[12px] bg-[#497FFF1A] px-[1rem] rounded-[0.5rem] justify-items-start md:grid-cols-[20px_auto]` :`grid grid-flow-col px-[1rem] w-full h-[45px] gap-[12px] justify-items-start md:grid-cols-[20px_auto]`} key={link.label}>
-                    <div className="flex items-center">{selected === link.label ? link.imgActive : link.img}</div>
+                    <div className={currPage === link.label ? `grid grid-flow-col w-full h-[45px] gap-[12px] bg-[#497FFF1A] px-[1rem] rounded-[0.5rem] justify-items-start md:grid-cols-[20px_auto]` :`grid grid-flow-col px-[1rem] w-full h-[45px] gap-[12px] justify-items-start md:grid-cols-[20px_auto]`} key={link.label}>
+                    <div className="flex items-center">{currPage === link.label ? link.imgActive : link.img}</div>
                         <Link className="flex items-center" onClick={() => handleClick(link.label)} to={{pathname: `/${link.label}`}}>{link.label}</Link>
                     </div>
                     )}
@@ -81,8 +80,8 @@ const Navbar = ({page}) => {
             <div>
                 <ul className="flex flex-col gap-[8px]">
                     {bottomNavLink.map(link => 
-                    <div className={selected === link.label ? `grid grid-flow-col w-full h-[45px] gap-[12px] bg-[#497FFF1A] px-[1rem] rounded-[0.5rem] justify-items-start md:grid-cols-[20px_auto]` :`grid grid-flow-col px-[1rem] w-full h-[45px] gap-[12px] justify-items-start md:grid-cols-[20px_auto]`} key={link.label}>
-                    <div className="flex items-center">{selected === link.label ? link.imgActive : link.img}</div>
+                    <div className={currPage === link.label ? `grid grid-flow-col w-full h-[45px] gap-[12px] bg-[#497FFF1A] px-[1rem] rounded-[0.5rem] justify-items-start md:grid-cols-[20px_auto]` :`grid grid-flow-col px-[1rem] w-full h-[45px] gap-[12px] justify-items-start md:grid-cols-[20px_auto]`} key={link.label}>
+                    <div className="flex items-center">{currPage === link.label ? link.imgActive : link.img}</div>
                         <Link className="flex items-center" onClick={() => handleClick(link.label)} to={{pathname: `/${link.label}`}}>{link.label}</Link>
                     </div>
                     )}
