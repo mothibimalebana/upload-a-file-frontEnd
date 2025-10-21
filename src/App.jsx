@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import { useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import Header from './components/Header';
 
 function App() {
   const [selectedPage, useSelectedPage] = useState(window.location.pathname.slice(1));
@@ -18,6 +19,7 @@ function App() {
     <div id='app' className="app grid overflow-y-hidden overflow-x-hidden md:grid-cols-[250px_minmax(900px,_auto)] bg-[#fff]">
       <Navbar page={useSelectedPage} currPage={selectedPage}/>
       <div className="app-content w-full">
+        <Header page={selectedPage}/>
         <Outlet id='outlet'/>
       </div>
     </div>
