@@ -77,7 +77,7 @@ const Navbar = ({page, currPage}) => {
                     {topNavLinks.map(link => 
                     <div className={currPage === link.label ? `grid grid-flow-col w-full h-[45px] gap-[12px] bg-[#497FFF1A] px-[1rem] rounded-[0.5rem] justify-items-start md:grid-cols-[20px_auto]` :`grid grid-flow-col px-[1rem] w-full h-[45px] gap-[12px] justify-items-start md:grid-cols-[20px_auto]`} key={link.label}>
                     <div className="flex items-center">{currPage === link.label ? link.imgActive : link.img}</div>
-                        <Link className="flex items-center" onClick={() => handleClick(link.label)} to={{pathname: `/${link.label}`}}>{link.label}</Link>
+                        <Link className="flex items-center w-full" onClick={() => handleClick(link.label)} to={{pathname: `/${link.label}`}}>{link.label}</Link>
                     </div>
                     )}
                 </ul>
@@ -87,7 +87,7 @@ const Navbar = ({page, currPage}) => {
                     {bottomNavLink.map(link => 
                     <div className={currPage === link.label ? `grid grid-flow-col w-full h-[45px] gap-[12px] bg-[#497FFF1A] px-[1rem] rounded-[0.5rem] justify-items-start md:grid-cols-[20px_auto]` :`grid grid-flow-col px-[1rem] w-full h-[45px] gap-[12px] justify-items-start md:grid-cols-[20px_auto]`} key={link.label}>
                     <div className="flex items-center">{currPage === link.label ? link.imgActive : link.img}</div>
-                        <Link className="flex items-center" onClick={() => handleClick(link.label)} to={{pathname: `/${link.label}`}}>{link.label}</Link>
+                        <Link className="flex items-center w-full" onClick={() => handleClick(link.label)} to={{pathname: `/${link.label}`}}>{link.label}</Link>
                     </div>
                     )}
                 </ul>

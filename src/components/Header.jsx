@@ -1,4 +1,12 @@
+import { useGSAP } from "@gsap/react"
+import gsap from "gsap";
+
 const Header = ({page}) => {
+    useGSAP(() => {
+        gsap.from(".title", {duration: 2.5, x:'100%', ease: 'power4.out'});
+    }, [page])
+
+
     const homeSVG = {
         img:
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -25,7 +33,7 @@ const Header = ({page}) => {
                 <div className="left">
                     <div className="page flex items-center gap-[0.5rem]">
                         {page === 'Home' && homeSVG.img || page === 'Folders' && foldersSVG.img || page === 'Settings' && settingsSVG.img}
-                        <p className="text-[0.875rem] text-[#000] tracking-[-0.003rem] font-[542]">{page}</p>
+                        <p className="title text-[0.875rem] text-[#000] tracking-[-0.003rem] font-[542]">{page}</p>
                     </div>
                 </div>
                 <div className="right flex gap-[2rem] items-center">

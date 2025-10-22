@@ -11,7 +11,7 @@ function App() {
   const [selectedPage, useSelectedPage] = useState(window.location.pathname.slice(1));
 
   useGSAP(() => {
-    gsap.from(".outlet",{duration: 1, y: '100%', ease: 'power4.out'})
+    gsap.from(".outlet",{duration: 2, y: '100%', ease: 'power4.out'})
   }, {dependencies:[selectedPage]})
 
 
