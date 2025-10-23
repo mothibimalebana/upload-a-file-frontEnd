@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/UserContext';
 
 const Header = () => {
   return(
@@ -20,6 +19,7 @@ const Form = () => {
   const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);  // Loading state
   const navigate = useNavigate();
+
 
   const loggedInRedirect = () => {
     navigate("/")
@@ -71,7 +71,6 @@ const Form = () => {
       });
 
       const user = await response.json();
-      useAuth(user);
       // Check if the request was successful
       if (!response.ok) {
         throw new Error('Login failed. Please try again.');

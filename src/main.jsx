@@ -8,28 +8,21 @@ import Home from './components/Home';
 import Folders from './components/Folders';
 import Settings from './components/Settings';
 import Logout from './components/Logout';
-import { UserContext } from './context/UserContext';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <UserContext value={userId}><App/></UserContext>,
+    element: <App/>,
     children: [
       { path:"/home", element: <Home/> },
       { path:"/folders", element: <Folders/> },
-      { path:"settings", element: <Settings/> },
-      { path:"logout", element: <Logout /> },
+      { path:"/settings", element: <Settings/> },
+      { path:"/logout", element: <Logout /> },
+      { path: "/login", element: <Login/>},
+      { path: "/sign-up", element: <SignUp/>}
     ]
     
   },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/sign-up",
-    element: <SignUp />,
-  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
