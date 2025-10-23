@@ -8,16 +8,17 @@ import Home from './components/Home';
 import Folders from './components/Folders';
 import Settings from './components/Settings';
 import Logout from './components/Logout';
+import { UserContext } from './context/UserContext';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <UserContext value={userId}><App/></UserContext>,
     children: [
       { path:"/home", element: <Home/> },
       { path:"/folders", element: <Folders/> },
       { path:"settings", element: <Settings/> },
-      { path:"logout", element: <Logout/> },
+      { path:"logout", element: <Logout /> },
     ]
     
   },

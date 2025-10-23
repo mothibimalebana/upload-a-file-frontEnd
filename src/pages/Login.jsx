@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/UserContext';
 
 const Header = () => {
   return(
@@ -20,7 +21,7 @@ const Form = () => {
   const [loading, setLoading] = useState(false);  // Loading state
   const navigate = useNavigate();
 
-  const login = () => {
+  const loggedInRedirect = () => {
     navigate("/")
   }
   const handleResponse = () => {
@@ -32,7 +33,7 @@ const Form = () => {
     setResponse('');
 
     if(loggedIn){
-      login()
+      loggedInRedirect()
     }
   }
 
@@ -66,8 +67,11 @@ const Form = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(payload),
+        credentials: 'include'
       });
 
+      const user = await response.json();
+      useAuth(user);
       // Check if the request was successful
       if (!response.ok) {
         throw new Error('Login failed. Please try again.');

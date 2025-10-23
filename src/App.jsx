@@ -1,7 +1,7 @@
 import { Outlet, useParams } from 'react-router-dom';
 import './App.css'
 import Navbar from './components/Navbar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Header from './components/Header';
@@ -9,6 +9,10 @@ import SearchBar from './components/SearchBar';
 
 function App() {
   const [selectedPage, useSelectedPage] = useState(window.location.pathname.slice(1));
+
+  // useEffect(() => {
+  //   fetch('localhost:http://localhost:3000')
+  // }, [])
 
   useGSAP(() => {
     gsap.from(".outlet",{duration: 2, y: '100%', ease: 'power4.out'})

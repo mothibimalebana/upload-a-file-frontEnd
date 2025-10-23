@@ -3,7 +3,7 @@ import gsap from "gsap";
 
 const Header = ({page}) => {
     useGSAP(() => {
-        gsap.from(".title", {duration: 2.5, x:'100%', ease: 'power4.out'});
+        gsap.from(".title", {duration: 1.8, x:'100%', ease: 'power4.out'});
     }, [page])
 
 
