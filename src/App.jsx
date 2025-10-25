@@ -11,10 +11,31 @@ import SearchBar from './components/SearchBar';
 function App() {
   const [selectedPage, useSelectedPage] = useState(window.location.pathname.slice(1));
   const [userId, setUserId] = useState(null);
+  const [files, setFiles] = useState(null);
 
   const location = useLocation();
+
   useEffect(() => {
     setUserId(location.state)
+  },[]);
+
+  useEffect( ()=> {
+    const fetchFiles = async () => {
+      try{
+        const response = await fetch('http://localhost:3000/files/', {credentials: "include"})
+
+        if(!response.ok){
+          throw Error("Something went wrong");
+        }
+        
+        const files = await response.json()
+        setFiles(files.files)
+
+      } catch(err){
+        console.error(err)
+      }
+    }
+    fetchFiles();
   },[])
   
 
