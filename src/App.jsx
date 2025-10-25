@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import './App.css'
 import Navbar from './components/Navbar';
-import {  useState } from 'react';
+import {  useEffect, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Header from './components/Header';
@@ -10,6 +10,13 @@ import SearchBar from './components/SearchBar';
 
 function App() {
   const [selectedPage, useSelectedPage] = useState(window.location.pathname.slice(1));
+  const [userId, setUserId] = useState(null);
+
+  const location = useLocation();
+  useEffect(() => {
+    setUserId(location.state)
+  },[])
+  
 
   useGSAP(() => {
     gsap.from(".outlet",{duration: 2, y: '100%', ease: 'power4.out'})

@@ -18,12 +18,12 @@ const Form = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState(null);
+  const [userId, setUserId] = useState(null);
   const navigate = useNavigate();
 
 
   const loggedInRedirect = () => {
-    return redirect("/Home")
+    return navigate("/Home", {state: userId})
   }
   const handleResponse = () => {
     alert(response);
@@ -81,7 +81,7 @@ const Form = () => {
       setLoggedIn(true)
       setEmail('');
       setPassword('');
-      setUser(user);
+      setUserId(user.id);
     } catch (err) {
       setResponse(err.message);
     } finally {

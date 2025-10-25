@@ -18,11 +18,16 @@ const router = createBrowserRouter([
       { path:"/folders", element: <Folders/> },
       { path:"/settings", element: <Settings/> },
       { path:"/logout", element: <Logout /> },
-      { path: "/login", element: <Login/>},
-      { path: "/sign-up", element: <SignUp/>}
     ]
-    
   },
+  {
+    path: "/login",
+    element: <Login/>
+  },
+  {
+    path: "/sign-up",
+    element: <SignUp/>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
