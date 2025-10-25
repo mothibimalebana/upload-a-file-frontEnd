@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   return(
@@ -17,12 +17,13 @@ const Form = () => {
   const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
   const [response, setResponse] = useState('');
-  const [loading, setLoading] = useState(false);  // Loading state
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
 
   const loggedInRedirect = () => {
-    navigate("/")
+    return redirect("/Home")
   }
   const handleResponse = () => {
     alert(response);
@@ -80,6 +81,7 @@ const Form = () => {
       setLoggedIn(true)
       setEmail('');
       setPassword('');
+      setUser(user);
     } catch (err) {
       setResponse(err.message);
     } finally {
