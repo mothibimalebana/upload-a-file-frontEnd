@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import './App.css'
 import Navbar from './components/Navbar';
-import {  useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Header from './components/Header';
@@ -50,9 +50,11 @@ function App() {
       <Navbar page={useSelectedPage} currPage={selectedPage}/>
       <div className="app-content w-full">
         <Header page={selectedPage}/>
+        <div className="main-content flex flex-col h-full">
         <SearchBar/>
-        <div className="outlet">
-          <Outlet/>
+        <div className="outlet h-full grow">
+          <Outlet context={[files]}/>
+        </div>
         </div>
       </div>
     </div>

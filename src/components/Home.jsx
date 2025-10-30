@@ -17,7 +17,7 @@ const Home = ({files}) => {
 
     return(
         <>
-            <div className="container">
+            <div className="container h-full">
                 <p className="text-start" >Recently</p>
                 <Files files={files}/>
             </div>

@@ -1,7 +1,9 @@
 const Folders = () => {
     return(
         <>
-            <p>Folders</p>
+            <div className="folder h-full">
+                <p>Folders</p>
+            </div>
         </>
     )
 }

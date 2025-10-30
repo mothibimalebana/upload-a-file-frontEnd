@@ -10,7 +10,6 @@ const Header = () => {
   )
 }
 
-
 const Form = () => {
   // State to handle form input values
   const [email, setEmail] = useState('');
@@ -20,7 +19,6 @@ const Form = () => {
   const [loading, setLoading] = useState(false);
   const [userId, setUserId] = useState(null);
   const navigate = useNavigate();
-
 
   const loggedInRedirect = () => {
     return navigate("/Home", {state: userId})
