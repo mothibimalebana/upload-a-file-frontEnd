@@ -48,9 +48,9 @@ function App() {
     <>
     <div id='app' className="app grid overflow-y-hidden overflow-x-hidden md:grid-cols-[250px_minmax(900px,_auto)] bg-[#fff]">
       <Navbar page={useSelectedPage} currPage={selectedPage}/>
-      <div className="app-content w-full">
+      <div className="app-content w-full flex flex-col items-center">
         <Header page={selectedPage}/>
-        <div className="main-content flex flex-col h-full">
+        <div className="main-content flex flex-col h-full w-[49.5rem] justifiy-center">
         <SearchBar/>
         <div className="outlet h-full grow">
           <Outlet context={[files]}/>
