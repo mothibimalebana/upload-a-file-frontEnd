@@ -6,12 +6,14 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
+import Upload from './components/Upload';
 
 
 function App() {
   const [selectedPage, useSelectedPage] = useState(window.location.pathname.slice(1));
   const [userId, setUserId] = useState(null);
   const [files, setFiles] = useState(null);
+  const [isUploadActive, setIsUploadActive] = useState(true)
 
   const location = useLocation();
 
@@ -46,10 +48,11 @@ function App() {
 
   return (
     <>
+    <Upload isOpen={isUploadActive} setOpen={setIsUploadActive}/>
     <div id='app' className="app grid overflow-y-hidden overflow-x-hidden md:grid-cols-[250px_minmax(900px,_auto)] bg-[#fff]">
       <Navbar page={useSelectedPage} currPage={selectedPage}/>
       <div className="app-content w-full flex flex-col items-center">
-        <Header page={selectedPage}/>
+        <Header page={selectedPage} setUploadForm={setIsUploadActive}/>
         <div className="main-content flex flex-col h-full w-[49.5rem] justifiy-center">
         <SearchBar/>
         <div className="outlet h-full grow">
