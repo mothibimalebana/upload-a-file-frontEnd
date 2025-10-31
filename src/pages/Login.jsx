@@ -87,7 +87,7 @@ const Form = () => {
     }
   };
   return(
-    <div className="form flex flex-col justify-end grow-1 shrink-0 content-end items-center">
+    <div className="form flex flex-col justify-end grow-1 shrink-0 content-end items-center overflow-hidden">
       <form onSubmit={handleSubmit} className='flex flex-col h-[80%] justify-between'>
         {/* Email Field */}
         <div className="form-group">
