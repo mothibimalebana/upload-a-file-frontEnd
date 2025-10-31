@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Folders from './components/Folders';
 import Settings from './components/Settings';
 import Logout from './components/Logout';
+import Upload from './components/Upload'
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       { path:"/settings", element: <Settings/> },
       { path:"/logout", element: <Logout /> },
     ]
+  },
+  { 
+    path:"/upload", 
+    element: <Upload/>
   },
   {
     path: "/login",
