@@ -10,7 +10,7 @@ const Upload = ({isOpen, setOpen}) => {
     }
     return(
         <>
-            <div className="container-upload w-full h-full fixed z-1 left-0 top-0 justify-center overflow-hidden backdrop-blur-sm">
+            <div onClick={handleCancel} className="container-upload w-full h-full fixed z-1 left-0 top-0 justify-center overflow-hidden backdrop-blur-sm">
                 <div className="upload-form bg-[#fff] flex flex-col mx-auto items-center w-[448px] h-[450px] my-[6.5rem] rounded-[0.88rem] border-[2rem] border-[#fff]">
                     <div className="heading">
                         <h1 className="text-[#0F172B] text-[1rem] font-[400]">Upload Document</h1>
